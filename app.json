@@ -21,7 +21,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.plash.ytaro"
+    },
+    "android": {
+      "package": "com.plash.ytaro"
     }
   }
 }

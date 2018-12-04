@@ -10,8 +10,21 @@
   },
   "dependencies": {
     "expo": "^31.0.2",
+    "faker": "Marak/faker.js",
+    "immutable": "^4.0.0-rc.12",
+    "prop-types": "^15.6.2",
     "react": "16.5.0",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-31.0.0.tar.gz"
+    "react-native": "https://github.com/expo/react-native/archive/sdk-31.0.0.tar.gz",
+    "react-native-modal": "^7.0.1",
+    "react-native-modalbox": "^1.6.0",
+    "react-native-router-flux": "^4.0.6",
+    "react-redux": "^5.1.1",
+    "reactotron-react-js": "^2.1.1",
+    "reactotron-react-native": "^2.1.0",
+    "reactotron-redux": "^2.1.0",
+    "redux": "^4.0.1",
+    "redux-saga": "^0.16.2",
+    "styled-components": "^4.1.2"
   },
   "devDependencies": {
     "babel-preset-expo": "^5.0.0"
