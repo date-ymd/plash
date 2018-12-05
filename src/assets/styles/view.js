@@ -1,7 +1,8 @@
 import {
-  View,
+  Dimensions,
 } from 'react-native';
 
+const {width} = Dimensions.get('window');
 
 import styled from 'styled-components/native';
 import * as csses from './css.js';
@@ -88,4 +89,17 @@ export const ContentRowBetween = styled.View `
 export const HaderView = styled.View `
   ${csses.center}
   background-color: white;
+`
+
+export const FooterView = styled.View `
+  ${csses.center};
+  background-color: rgba(0,0,0,0.3);
+  border-radius: 100;
+`;
+
+export const FooterTouch = styled.TouchableOpacity `
+  background-color: rgba(0,0,0,0.3);
+  border-radius: 100; 
+  width: 50px;
+  height: 50px;
 `

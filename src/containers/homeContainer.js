@@ -1,12 +1,27 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ScrollView, Image, TouchableOpacity } from 'react-native';
+import { 
+  StyleSheet, 
+  Text, 
+  View, 
+  ScrollView, 
+  Image, 
+  TouchableOpacity,
+  LayoutAnimation,
+  NativeModules,
+  Platform,
+  Dimensions
+ } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Actions } from 'react-native-router-flux';
 import PropTypes from 'prop-types';
 import { MapView } from 'expo';
-import Modal from 'react-native-modalbox';
 import faker from 'faker';
+import Carousel, {Pagination} from 'react-native-snap-carousel';
+import ImageView from 'react-native-image-view';
+
+// window size
+const {height, width} = Dimensions.get('window');
 
 // facke
 import fackes from '../util/facker';
@@ -17,13 +32,26 @@ import * as actions from '../actions/homeAction';
 // Component
 import SmallContent from '../components/smallContentComponent';
 import CommonHeader from '../components/commonHeaderComp';
-import { Collection } from 'immutable';
+import CommonFooter from '../components/commonFooterComp';
+
+// styles
+import * as Styles from '../assets/styles';
+const TouchClose = Styles.tochableStyles.TouchClose;
+
+const { UIManager } = NativeModules;
+
+UIManager.setLayoutAnimationEnabledExperimental &&
+  UIManager.setLayoutAnimationEnabledExperimental(true);
 
 class homeContainer extends Component {
   constructor(props) {
     super(props);
     this.props = props;
-    console.log(faker.address.latitude(), 'faker');
+    this.state = {
+      isImageView: false,
+      activeSlide: 0,
+    }
+    console.log(this.state);
   }
 
   componentWillMount() {
@@ -47,24 +75,71 @@ class homeContainer extends Component {
 
   }
 
+  layoutChange(type) {
+    LayoutAnimation.spring();
+    this.props.actions.changeLayout(type);
+  }
+
+  renderItem(data) {
+    // this.setState({'isImageView': true});
+    let item = data.item;
+    return (
+      <View 
+        style={{backgroundColor: 'white'}}
+      >
+        <Image source={item} style={{width:null,height:'100%'}} />
+      </View>
+    )
+  }
+
   render() {
+    console.log(this.props.homeProps.imgHeight);
     return (
       <View style={{flex:1}}>
         <CommonHeader />
         <View 
-          // isOpen={this.props.homeProps.isModal}
-          // onClosed={() => {this.props.actions.toggleModal(false)}}
-          // position={"top"}
-          style={{height:'45%'}}
-          // backdrop={false}
+          style={this.props.homeProps.imgHeight}
         >
-        <View style={{backgroundColor: 'white'}}>
-          <Image source={this.props.homeProps.showImage} style={{width:null,height:'100%'}} />
+          <Carousel
+            data={this.props.homeProps.showImage}
+            renderItem={this.renderItem}
+            itemWidth={width}
+            sliderWidth={width}
+            onSnapToItem={(index) => this.setState({activeSlide: index})}
+            currentIndex={0}
+          />
+          <Pagination
+            dotsLength={this.props.homeProps.showImage.length}
+            activeDotIndex={this.state.activeSlide}
+            containerStyle={{ 
+              backgroundColor: 'rgba(0, 0, 0, 0)',
+              position:'absolute',
+              bottom:0
+            }}
+            dotStyle={{
+                width: 7,
+                height: 7,
+                borderRadius: 5,
+                marginRight: -10,
+                backgroundColor: 'rgba(255, 255, 255, 0.92)'
+            }}
+            inactiveDotOpacity={0.4}
+            inactiveDotScale={0.6}
+          />
+
+
+          <TouchClose
+            onPress={() => {
+              this.layoutChange('close');
+              this.setState({activeSlide:0});
+            }}
+          >
+            <Text style={ClosePosition}>×</Text>
+          </TouchClose>
         </View>
-      </View>
    
         <MapView
-          style={{flex:1}}
+          style={this.props.homeProps.mapHeight}
           initialRegion={{
             latitude: 35.72033066,
             longitude: 139.75192454,
@@ -78,22 +153,13 @@ class homeContainer extends Component {
               coordinate={{latitude:marker.latitude, longitude:marker.longitude}}
               onPress={() => {
                 this.props.actions.toggleModal(true, marker);
+                this.layoutChange('open');
+                this.setState({activeSlide:0});
               }}
             />
           ))}
         </MapView>
-        {/**
-          <ScrollView horizontal={true} style={{position:'absolute',bottom:0}}>
-            {
-            fackes.mappingDatas.map((col,i) => (
-              <View key={i}>
-                <Image source={col.img} style={{width:300,height:250}} />
-              </View>
-              ))
-            }
-          </ScrollView>
-         */}
-
+        <CommonFooter />
 
       </View>
     );
@@ -117,5 +183,10 @@ homeContainer.propTypes = {
 homeContainer.defaultProps = {
   page: 'home'
 }
+
+const ClosePosition = Platform.select({
+  ios: {top:-5, left:6, color:'white', fontSize:30, position:'absolute'},
+  android: {top:-7, left:7, color:'white', fontSize:30, position:'absolute'}
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(homeContainer);

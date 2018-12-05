@@ -13,6 +13,7 @@ import { createStore, runsaga } from './store/createStore';
 
 // container
 import HomeContainer from './containers/homeContainer';
+// import RegistContainer from './containers/registContainer';
 
 const store = createStore();
 runsaga();
@@ -30,9 +31,16 @@ export default class App extends React.Component {
             <Scene key="root">
               <Scene
                 key="home"
-                title="Top"
+                // title="Top"
                 component={HomeContainer}
               />
+              {/**
+                <Scene
+                  key="regist"
+                  // title="adsf"
+                  component={RegistContainer}
+                />
+               */}
             </Scene>
           </Router>
         </Provider>

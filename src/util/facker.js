@@ -6,217 +6,402 @@ const datas = {
     {
       latitude: 35.72033066,
       longitude: 139.75192454,
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ],
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
     {
       latitude: parseInt(faker.address.latitude()),
       longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
-    },
-    {
-      latitude: parseInt(faker.address.latitude()),
-      longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
-    },
-    {
-      latitude: parseInt(faker.address.latitude()),
-      longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
-    },
-    {
-      latitude: parseInt(faker.address.latitude()),
-      longitude: parseInt(faker.address.longitude()),
-      img: files.img[Math.floor(Math.random() * files.img.length)],
+      img: [
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)],
+        files.img[Math.floor(Math.random() * files.img.length)]
+      ]
     },
   ]
 }

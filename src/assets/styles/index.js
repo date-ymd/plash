@@ -8,3 +8,7 @@ export const viewStyles = view;
 // text
 import * as text from './text';
 export const textStyles = text;
+
+// touchable
+import * as touchable from './touchable';
+export const tochableStyles = touchable;

@@ -11,3 +11,8 @@ export const toggleModal = (value, marker) => ({
   payload: value,
   marker: marker
 });
+
+export const changeLayout = (type) => ({
+  type: 'changeLayout',
+  payload: type
+});
