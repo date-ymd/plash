@@ -27,6 +27,21 @@ export default (state = new immutable(), action) => {
           .set('mapHeight', {height:'90%',flex:1});
       }
 
+    case 'changeLayoutFooter':
+      if(action.payload.type == 'open') {
+        return state
+          .set('footerStyle', {width: action.payload.width, height: action.payload.height, borderRadius: 10, backgroundColor:'rgba(0,0,0,0.6)'})
+          .set('footerState', 'open')
+          .set('plusStyle', {opacity:0})
+          .set('btnStyle', {width:action.payload.width - 50, height: 50});
+      } else {
+        return state
+          .set('footerStyle', {width: 50, height: 50})
+          .set('footerState', 'close')
+          .set('plusStyle', {opacity:1})
+          .set('btnStyle', {width:0, height:0});
+      }
+
     default:
       return state;
   }

@@ -10,3 +10,9 @@ export const TouchClose = styled.TouchableOpacity `
   top: 10px;
   left: 10px;
 `
+export const TouchWhite = styled.TouchableOpacity `
+  height: 50px;
+  border-radius: 50px;
+  background-color: white;
+  align-self: center;
+`

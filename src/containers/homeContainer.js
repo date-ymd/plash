@@ -18,7 +18,6 @@ import PropTypes from 'prop-types';
 import { MapView } from 'expo';
 import faker from 'faker';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
-import ImageView from 'react-native-image-view';
 
 // window size
 const {height, width} = Dimensions.get('window');
@@ -51,37 +50,30 @@ class homeContainer extends Component {
       isImageView: false,
       activeSlide: 0,
     }
-    console.log(this.state);
   }
 
-  componentWillMount() {
+  componentWillMount() { }
+  componentDidMount() { }
+  componentWillReceiveProps(nextProps) { }
+  shouldComponentUpdate(nextProps, nextState) { 
+    return true; 
   }
-  componentDidMount() {
-
-  }
-  componentWillReceiveProps(nextProps) {
-
-  }
-  shouldComponentUpdate(nextProps, nextState) {
-    return true;
-  }
-  componentWillUpdate() {
-
-  }
-  componentDidUpdate() {
-
-  }
-  componentWillMount() {
-
-  }
+  componentWillUpdate() { }
+  componentDidUpdate() { }
+  componentWillMount() { }
 
   layoutChange(type) {
     LayoutAnimation.spring();
     this.props.actions.changeLayout(type);
   }
+  layoutChangeFooter(type) {
+    if (this.props.homeProps.footerState === 'open') {
+      LayoutAnimation.easeInEaseOut();
+      this.props.actions.changeLayoutFooter(type);
+    }
+  }
 
   renderItem(data) {
-    // this.setState({'isImageView': true});
     let item = data.item;
     return (
       <View 
@@ -92,8 +84,42 @@ class homeContainer extends Component {
     )
   }
 
+  markerMapping(data) {
+    return (
+      fackes.place.map((e,i) => (
+        <MapView.Marker
+          key={i} 
+          coordinate={{latitude:e.latitude, longitude:e.longitude}}
+          onPress={() => {
+            this.props.actions.toggleModal(true, e);
+            this.layoutChange('open');
+            this.setState({activeSlide:0});
+          }}
+        />
+      ))
+    )
+  }
+
+  polyline(data) {
+    return (
+      fackes.line.map((e,i) => (
+        <MapView.Polyline
+          key={i}
+          coordinates={[e.start, e.end]}
+          strokeColor={'#ff69b4'}
+          strokeWidth={3}
+          onPress={() => {
+            this.props.actions.toggleModal(true, e);
+            this.layoutChange('open');
+            this.setState({activeSlide:0});
+          }}
+        />
+      ))
+    )
+  }
+
   render() {
-    console.log(this.props.homeProps.imgHeight);
+    console.log(this.props.homeProps, 'props');
     return (
       <View style={{flex:1}}>
         <CommonHeader />
@@ -146,20 +172,20 @@ class homeContainer extends Component {
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421
           }}
+          onRegionChange={() => {
+            this.layoutChangeFooter('close');
+          }}
         >
-          {fackes.mappingDatas.map((marker, i) => (
-            <MapView.Marker 
-              key={i}
-              coordinate={{latitude:marker.latitude, longitude:marker.longitude}}
-              onPress={() => {
-                this.props.actions.toggleModal(true, marker);
-                this.layoutChange('open');
-                this.setState({activeSlide:0});
-              }}
-            />
-          ))}
+          {this.markerMapping()}
+          {this.polyline()}
         </MapView>
-        <CommonFooter />
+        <CommonFooter
+          footerStyle={this.props.homeProps.footerStyle}
+          action={this.props.actions.changeLayoutFooter}
+          footerState={this.props.homeProps.footerState}
+          plusStyle={this.props.homeProps.plusStyle}
+          btnStyle={this.props.homeProps.btnStyle}
+        />
 
       </View>
     );

@@ -8,7 +8,14 @@ const initialState = Record({
   showLat: '',
   showLong: '',
   mapHeight: {height:'90%',flex:1},
-  imgHeight: {height:0}
+  imgHeight: {height:0},
+  footerStyle: {
+    width: 50,
+    height: 50
+  },
+  footerState: 'close',
+  plusStyle: {width:50},
+  btnStyle: {width: 0}
 });
 
 export default class homeImmu extends initialState {

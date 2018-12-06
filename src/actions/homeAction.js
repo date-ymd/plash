@@ -16,3 +16,12 @@ export const changeLayout = (type) => ({
   type: 'changeLayout',
   payload: type
 });
+
+export const changeLayoutFooter = (type, width, height) => ({
+  type: 'changeLayoutFooter',
+  payload: {
+    type: type,
+    width: width,
+    height: height
+  }
+})

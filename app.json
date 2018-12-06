@@ -25,7 +25,12 @@
       "bundleIdentifier": "com.plash.ytaro"
     },
     "android": {
-      "package": "com.plash.ytaro"
+      "package": "com.plash.ytaro",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyB5h5w4vI93d8Q3RrCSmER9-ytF_iVu2Fc"
+        }
+      }
     }
   }
 }

@@ -21,3 +21,8 @@ export const FooterText = styled.Text `
   top: ${top};
   left: ${left};
 `
+
+export const RegistBtnTxt = styled.Text `
+  text-align: center;
+  font-size: 20px;
+`
