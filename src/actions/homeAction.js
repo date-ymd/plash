@@ -1,13 +1,9 @@
 export const INIT_PAGE = 'INIT_PAGE';
+import * as actionTypes from '../util/actionType';
 
-
-export const initPage = (value) => ({
-  type: actionTypes.INIT_PAGE,
-  payload: value
-});
 
 export const toggleModal = (value, marker) => ({
-  type: 'openModal',
+  type: actionTypes.OPEN_MODAL,
   payload: value,
   marker: marker
 });
@@ -24,4 +20,8 @@ export const changeLayoutFooter = (type, width, height) => ({
     width: width,
     height: height
   }
+})
+
+export const changeLayoutText = () => ({
+  type: 'changeLayoutText',
 })

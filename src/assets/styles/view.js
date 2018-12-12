@@ -102,4 +102,8 @@ export const FooterTouch = styled.TouchableOpacity `
   border-radius: 50; 
   width: 50px;
   height: 50px;
+  /* transform: rotate(45deg); */
+`
+export const FlexVertical = styled.View `
+  /* flex: 1; */
 `

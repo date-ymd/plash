@@ -25,4 +25,6 @@ export const FooterText = styled.Text `
 export const RegistBtnTxt = styled.Text `
   text-align: center;
   font-size: 20px;
+  padding-top: 13px;
+  color: hotpink;
 `

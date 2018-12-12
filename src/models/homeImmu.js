@@ -15,7 +15,9 @@ const initialState = Record({
   },
   footerState: 'close',
   plusStyle: {width:50},
-  btnStyle: {width: 0}
+  btnStyle: {width: 0},
+  menuStyle: {width: 0, height: 0},
+  textStyle: {opacity:0},
 });
 
 export default class homeImmu extends initialState {

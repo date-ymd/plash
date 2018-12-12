@@ -185,6 +185,9 @@ class homeContainer extends Component {
           footerState={this.props.homeProps.footerState}
           plusStyle={this.props.homeProps.plusStyle}
           btnStyle={this.props.homeProps.btnStyle}
+          menuStyle={this.props.homeProps.menuStyle}
+          textStyle={this.props.homeProps.textStyle}
+          actionText={this.props.actions.changeLayoutText}
         />
 
       </View>

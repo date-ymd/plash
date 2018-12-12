@@ -13,7 +13,7 @@ import { createStore, runsaga } from './store/createStore';
 
 // container
 import HomeContainer from './containers/homeContainer';
-// import RegistContainer from './containers/registContainer';
+import CreatePinContainer from './containers/createPinContainer';
 
 const store = createStore();
 runsaga();
@@ -34,13 +34,11 @@ export default class App extends React.Component {
                 // title="Top"
                 component={HomeContainer}
               />
-              {/**
-                <Scene
-                  key="regist"
-                  // title="adsf"
-                  component={RegistContainer}
-                />
-               */}
+              <Scene
+                key="createPin"
+                // title="adsf"
+                component={CreatePinContainer}
+              />
             </Scene>
           </Router>
         </Provider>

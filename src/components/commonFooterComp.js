@@ -3,11 +3,13 @@ import {Platform, View, LayoutAnimation, Dimensions, TouchableHighlight, Text} f
 import SafeAreaView from 'react-native-safe-area-view';
 
 import * as Styles from '../assets/styles';
+import { Actions } from 'react-native-router-flux';
 
 const FooterTouch = Styles.viewStyles.FooterTouch;
 const FooterText = Styles.textStyles.FooterText;
 const RegistBtnTxt = Styles.textStyles.RegistBtnTxt;
 const TouchWhite = Styles.tochableStyles.TouchWhite;
+const FlexVertical = Styles.viewStyles.FlexVertical;
 
 // platform
 const PdTop = Platform.select({
@@ -17,72 +19,91 @@ const PdTop = Platform.select({
 
 const {height, width} = Dimensions.get('window');
 
-function layoutChange(props) {
-  LayoutAnimation.spring();
-  props.action('open', width - 50, 200);
-  // console.log(props, 'props');
+function layoutChange(props, type = 'open') {
+  LayoutAnimation.easeInEaseOut();
+  props.action(type, width - 50, 200);
+}
+
+function layoutChangeClose(props) {
+  // LayoutAnimation.spring();
+  if (Platform.OS == 'ios') {
+    setTimeout(() => props.actionText(), 500);
+  } else {
+    props.actionText();
+  }
 }
 
 function registBtn(props) {
-  console.log(props, 'footer');
-  // if (props.footerState === 'close') {
     return (
-      <View>
-        <View style={props.plusStyle}>
-          <FooterText>+</FooterText>
-        </View>
+      <View style={[props.menuStyle, {backgroundColor: 'rgba(0,0,0,0.3)', position:'absolute',bottom:90,justifyContent: 'center', alignItems: 'center'}]}>
         <TouchWhite
-        style={props.btnStyle}
-        onPress={() => {console.log('object');}}
+        style={[props.btnStyle, {marginBottom:20}]}
+        onPress={() => {Actions.createPin()}}
       >
-        <RegistBtnTxt>asdf</RegistBtnTxt>
+        <RegistBtnTxt style={props.textStyle}>Create Pin</RegistBtnTxt>
       </TouchWhite>
       <TouchWhite
-        style={props.btnStyle}
+        style={[props.btnStyle]}
         onPress={() => {console.log('object');}}
       >
-        <RegistBtnTxt>asdf</RegistBtnTxt>
+        <RegistBtnTxt style={props.textStyle}>Create Line</RegistBtnTxt>
       </TouchWhite>
       </View>
     );
-  // } else {
-  //   return (
-  //     <View>
-  //       <TouchWhite
-  //         style={props.btnStyle}
-  //         onPress={() => {console.log('object');}}
-  //       >
-  //         <RegistBtnTxt>asdf</RegistBtnTxt>
-  //       </TouchWhite>
-  //       <TouchWhite
-  //         style={{width:width - 100}}
-  //         onPress={() => {console.log('object');}}
-  //       >
-  //         <RegistBtnTxt>asdf</RegistBtnTxt>
-  //       </TouchWhite>
-  //     </View>
-  //   );
-  // }
 }
 
+// const commonFooter = (props) => {
+//   return (
+//     <SafeAreaView 
+//       forceInset={{bottom:'always'}} 
+//       style={{
+//         // position:'absolute', 
+//         // bottom:10,
+//         backgroundColor: 'rgba(0,0,0,0)',
+//         alignSelf: 'center',
+//       }}
+//     >
+//       {registBtn(props)}
+//       <FooterTouch
+//         style={[props.footerStyle, {position:'absolute', bottom: 10}]}
+//         onPress={() => {
+//           if (props.footerState == 'close') {
+//             layoutChange(props);
+//           } else {
+//             layoutChange(props, 'close');
+//           }
+//         }}
+//       >
+//         <View style={props.plusStyle}>
+//           <FooterText>+</FooterText>
+//         </View>
+//         </FooterTouch>
+        
+//     </SafeAreaView>
+//   )
+// }
 const commonFooter = (props) => {
   return (
-    <SafeAreaView 
-      forceInset={{bottom:'always'}} 
-      style={{
-        position:'absolute', 
-        bottom:10,
-        backgroundColor: 'rgba(0,0,0,0)',
-        alignSelf: 'center',
-      }}
+    <View
+      style={{justifyContent: 'center', alignItems: 'center'}}
     >
+      {registBtn(props)}
       <FooterTouch
-        style={props.footerStyle}
-        onPress={() => {layoutChange(props)}}
+        style={[props.footerStyle, {position:'absolute', bottom: 40}]}
+        onPress={() => {
+          if (props.footerState === 'close') {
+            layoutChange(props);
+            layoutChangeClose(props);
+          } else {
+            layoutChange(props, 'close');
+          }
+        }}
       >
-        {registBtn(props)}
+        <View style={props.plusStyle}>
+          <FooterText>+</FooterText>
+        </View>
       </FooterTouch>
-    </SafeAreaView>
+    </View>
   )
 }
 

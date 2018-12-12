@@ -1,8 +1,10 @@
 import immutable from '../models/homeImmu';
+import { Platform } from 'react-native';
+import * as actionTypes from '../util/actionType';
 
 export default (state = new immutable(), action) => {
   switch (action.type) {
-    case 'openModal' :
+    case actionTypes.OPEN_MODAL:
       if(action.payload) {
         return state
           .set('isModal', action.payload)
@@ -28,19 +30,25 @@ export default (state = new immutable(), action) => {
       }
 
     case 'changeLayoutFooter':
-      if(action.payload.type == 'open') {
+      if(action.payload.type === 'open') {
         return state
-          .set('footerStyle', {width: action.payload.width, height: action.payload.height, borderRadius: 10, backgroundColor:'rgba(0,0,0,0.6)'})
           .set('footerState', 'open')
-          .set('plusStyle', {opacity:0})
-          .set('btnStyle', {width:action.payload.width - 50, height: 50});
+          .set('btnStyle', {width:action.payload.width - 50, height: 50})
+          .set('footerStyle', {transform: [{'rotate':(Platform.OS==='ios') ? '45deg' : 45}]})
+          .set('menuStyle', {width:action.payload.width, height:action.payload.height, borderRadius:10});
       } else {
         return state
-          .set('footerStyle', {width: 50, height: 50})
+          .set('footerStyle', {width: 50, height: 50, transform: [{rotate:(Platform.OS==='ios') ? '0deg' : 0}]})
           .set('footerState', 'close')
-          .set('plusStyle', {opacity:1})
-          .set('btnStyle', {width:0, height:0});
+          .set('textStyle', {opacity:0})
+          .set('btnStyle', {width:0, height:0})
+          .set('menuStyle', {width:0, height:0});
       }
+
+    case 'changeLayoutText':
+      return state
+        .set('textStyle', {opacity:1});
+
 
     default:
       return state;
