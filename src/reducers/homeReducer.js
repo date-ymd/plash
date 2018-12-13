@@ -22,11 +22,14 @@ export default (state = new immutable(), action) => {
       if (action.payload == 'open') {
         return state
           .set('imgHeight', {height:'45%'})
-          .set('mapHeight', {height:'45%',flex:1});
+          .set('mapHeight', {height:'45%',flex:1})
+          .set('imgCloseStyle', {opacity:1});
       } else {
         return state
           .set('imgHeight', {height:0})
-          .set('mapHeight', {height:'90%',flex:1});
+          .set('mapHeight', {height:'90%',flex:1})
+          .set('imgCloseStyle', {opacity:0})
+          .set('showImage', []);
       }
 
     case 'changeLayoutFooter':
@@ -49,6 +52,14 @@ export default (state = new immutable(), action) => {
       return state
         .set('textStyle', {opacity:1});
 
+    case actionTypes.SET_MY_LOCATION_TOP:
+      return state
+        .set('lat', action.payload.lat)
+        .set('lng', action.payload.lng);
+
+    case actionTypes.LOADING_TOP:
+      return state
+        .set('isLoading', action.payload);
 
     default:
       return state;

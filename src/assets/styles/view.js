@@ -88,7 +88,7 @@ export const ContentRowBetween = styled.View `
 
 export const HaderView = styled.View `
   ${csses.center}
-  background-color: white;
+  background-color: #e0f0f0;
 `
 
 export const FooterView = styled.View `

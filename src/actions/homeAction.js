@@ -25,3 +25,16 @@ export const changeLayoutFooter = (type, width, height) => ({
 export const changeLayoutText = () => ({
   type: 'changeLayoutText',
 })
+
+export const setMyLocation = (value) => ({
+  type: actionTypes.SET_MY_LOCATION_TOP,
+  payload: {
+    lat: value.coords.latitude? value.coords.latitude : 34.6497048,
+    lng: value.coords.longitude? value.coords.longitude : 134.9991259
+  }
+})
+
+export const loadingTop = (value) => ({
+  type: actionTypes.LOADING_TOP,
+  payload: value
+})

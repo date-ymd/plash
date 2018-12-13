@@ -42,7 +42,7 @@ const commonHeader = (props) => {
   //   </Container>
   // )
   return (
-    <View style={{backgroundColor:'#fff'}}>
+    <View style={{backgroundColor:'#e0f0f0'}}>
       <SafeAreaView forceInset={{top:'always'}} style={{height:HeaderTop}}>
         <Container style={{paddingTop:10}}>
           <HeadText style={{fontFamily: platFamily}}>Plash</HeadText>

@@ -18,6 +18,10 @@ const initialState = Record({
   btnStyle: {width: 0},
   menuStyle: {width: 0, height: 0},
   textStyle: {opacity:0},
+  lat: null,
+  lng: null,
+  isLoading: true,
+  imgCloseStyle: {opacity:0}
 });
 
 export default class homeImmu extends initialState {

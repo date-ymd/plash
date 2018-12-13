@@ -30,7 +30,10 @@ const files = {
     require('../assets/images/dammy/29.jpg'),
     require('../assets/images/dammy/30.jpg'),
     require('../assets/images/dammy/31.jpg'),
-  ]
+  ],
+  marker: {
+    main: require('../assets/images/marker/main_marker.png'),
+  }
 }
 
 export default files;

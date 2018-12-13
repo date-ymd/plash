@@ -15,9 +15,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Actions } from 'react-native-router-flux';
 import PropTypes from 'prop-types';
-import { MapView } from 'expo';
+import { MapView, Location, Permissions } from 'expo';
 import faker from 'faker';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
+import files from '../util/file';
 
 // window size
 const {height, width} = Dimensions.get('window');
@@ -32,6 +33,7 @@ import * as actions from '../actions/homeAction';
 import SmallContent from '../components/smallContentComponent';
 import CommonHeader from '../components/commonHeaderComp';
 import CommonFooter from '../components/commonFooterComp';
+import Loading from '../components/loadingComp';
 
 // styles
 import * as Styles from '../assets/styles';
@@ -53,7 +55,9 @@ class homeContainer extends Component {
   }
 
   componentWillMount() { }
-  componentDidMount() { }
+  componentDidMount() {
+    this._getLoacationAsync();
+   }
   componentWillReceiveProps(nextProps) { }
   shouldComponentUpdate(nextProps, nextState) { 
     return true; 
@@ -66,11 +70,24 @@ class homeContainer extends Component {
     LayoutAnimation.spring();
     this.props.actions.changeLayout(type);
   }
-  layoutChangeFooter(type) {
-    if (this.props.homeProps.footerState === 'open') {
-      LayoutAnimation.easeInEaseOut();
-      this.props.actions.changeLayoutFooter(type);
+  // layoutChangeFooter(type) {
+  //   if (this.props.homeProps.footerState === 'open') {
+  //     LayoutAnimation.easeInEaseOut();
+  //     this.props.actions.changeLayoutFooter(type);
+  //   }
+  // }
+
+  _getLoacationAsync = async() => {
+    let { status } = await Permissions.askAsync(Permissions.LOCATION);
+    if (status !== 'granted') {
+      this.setState({
+        locationResult: 'Permission to access location was denied',
+      }); 
     }
+
+    let location = await Location.getCurrentPositionAsync({});
+
+    this.props.actions.setMyLocation(location);
   }
 
   renderItem(data) {
@@ -95,7 +112,11 @@ class homeContainer extends Component {
             this.layoutChange('open');
             this.setState({activeSlide:0});
           }}
-        />
+        >
+        {/**
+          <Image source={files.marker.main} style={{width:20,height:35,marginLeft:1}} />
+        */}
+        </MapView.Marker>
       ))
     )
   }
@@ -119,79 +140,93 @@ class homeContainer extends Component {
   }
 
   render() {
-    console.log(this.props.homeProps, 'props');
-    return (
-      <View style={{flex:1}}>
-        <CommonHeader />
-        <View 
-          style={this.props.homeProps.imgHeight}
-        >
-          <Carousel
-            data={this.props.homeProps.showImage}
-            renderItem={this.renderItem}
-            itemWidth={width}
-            sliderWidth={width}
-            onSnapToItem={(index) => this.setState({activeSlide: index})}
-            currentIndex={0}
-          />
-          <Pagination
-            dotsLength={this.props.homeProps.showImage.length}
-            activeDotIndex={this.state.activeSlide}
-            containerStyle={{ 
-              backgroundColor: 'rgba(0, 0, 0, 0)',
-              position:'absolute',
-              bottom:0
-            }}
-            dotStyle={{
-                width: 7,
-                height: 7,
-                borderRadius: 5,
-                marginRight: -10,
-                backgroundColor: 'rgba(255, 255, 255, 0.92)'
-            }}
-            inactiveDotOpacity={0.4}
-            inactiveDotScale={0.6}
-          />
+    if(!this.props.homeProps.lat || !this.props.homeProps.lng) {
+      return (
+        <Loading />
+      );
+    } else {
 
+      return (
+        <View style={{flex:1}}>
+          <CommonHeader />
+          <View  style={this.props.homeProps.imgHeight}>
+          {(() => {
+            if (this.props.homeProps.showImage.length > 0) {
+              return (
+                <View >
+                <Carousel
+                  data={this.props.homeProps.showImage}
+                  renderItem={this.renderItem}
+                  itemWidth={width}
+                  sliderWidth={width}
+                  onSnapToItem={(index) => this.setState({activeSlide: index})}
+                  currentIndex={0}
+                />
+                
+                  <Pagination
+                    dotsLength={this.props.homeProps.showImage.length}
+                    activeDotIndex={this.state.activeSlide}
+                    containerStyle={{ 
+                      backgroundColor: 'rgba(0, 0, 0, 0)',
+                      position:'absolute',
+                      bottom:0
+                    }}
+                    dotStyle={{
+                        width: 7,
+                        height: 7,
+                        borderRadius: 5,
+                        marginRight: -10,
+                        backgroundColor: 'rgba(255, 255, 255, 0.92)'
+                    }}
+                    inactiveDotOpacity={0.4}
+                    inactiveDotScale={0.6}
+                  />
+      
+                <TouchClose
+                  onPress={() => {
+                    this.layoutChange('close');
+                    this.setState({activeSlide:0});
+                  }}
+                >
+                  <Text style={ClosePosition}>×</Text>
+                </TouchClose>
+              </View>
+              );
+            }
+          })()}
+          </View>
 
-          <TouchClose
-            onPress={() => {
-              this.layoutChange('close');
-              this.setState({activeSlide:0});
+          <MapView
+            style={this.props.homeProps.mapHeight}
+            initialRegion={{
+              latitude: this.props.homeProps.lat,
+              longitude: this.props.homeProps.lng,
+              latitudeDelta: 0.0922,
+              longitudeDelta: 0.0421
             }}
+            showsUserLocation={true}
+            followUserLoacation={true}
           >
-            <Text style={ClosePosition}>×</Text>
-          </TouchClose>
-        </View>
-   
-        <MapView
-          style={this.props.homeProps.mapHeight}
-          initialRegion={{
-            latitude: 35.72033066,
-            longitude: 139.75192454,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421
-          }}
-          onRegionChange={() => {
-            this.layoutChangeFooter('close');
-          }}
-        >
-          {this.markerMapping()}
-          {this.polyline()}
-        </MapView>
-        <CommonFooter
-          footerStyle={this.props.homeProps.footerStyle}
-          action={this.props.actions.changeLayoutFooter}
-          footerState={this.props.homeProps.footerState}
-          plusStyle={this.props.homeProps.plusStyle}
-          btnStyle={this.props.homeProps.btnStyle}
-          menuStyle={this.props.homeProps.menuStyle}
-          textStyle={this.props.homeProps.textStyle}
-          actionText={this.props.actions.changeLayoutText}
-        />
+            {this.markerMapping()}
+            {this.polyline()}
+          </MapView>
 
-      </View>
-    );
+  
+          <CommonFooter
+            // footerStyle={this.props.homeProps.footerStyle}
+            // action={this.props.actions.changeLayoutFooter}
+            // footerState={this.props.homeProps.footerState}
+            // plusStyle={this.props.homeProps.plusStyle}
+            // btnStyle={this.props.homeProps.btnStyle}
+            // menuStyle={this.props.homeProps.menuStyle}
+            // textStyle={this.props.homeProps.textStyle}
+            // actionText={this.props.actions.changeLayoutText}
+            btnStyle={this.props.homeProps.mapHeight}
+          />
+  
+        </View>
+      );
+    }
   }
 }
 

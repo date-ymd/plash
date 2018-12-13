@@ -38,6 +38,7 @@ export default class App extends React.Component {
                 key="createPin"
                 // title="adsf"
                 component={CreatePinContainer}
+                // initial={true}
               />
             </Scene>
           </Router>
