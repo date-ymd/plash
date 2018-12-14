@@ -12,7 +12,7 @@ const commonHeader = (props) => {
   return (
     <View style={{backgroundColor: 'white', padding: 10, borderBottomColor: '#ccc', borderBottomWidth:1}}>
       <View>
-        <Text style={{fontSize: 20, textAlign:'center', fontWeight: 'bold'}}>{props.title}</Text> 
+        <Text style={{fontSize: 20, textAlign:'center', fontWeight: 'bold'}}>{props.title}</Text>
       </View>
     </View>
   )

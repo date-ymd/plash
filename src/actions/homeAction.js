@@ -29,12 +29,19 @@ export const changeLayoutText = () => ({
 export const setMyLocation = (value) => ({
   type: actionTypes.SET_MY_LOCATION_TOP,
   payload: {
-    lat: value.coords.latitude? value.coords.latitude : 34.6497048,
-    lng: value.coords.longitude? value.coords.longitude : 134.9991259
+    lat: value.lat,
+    lng: value.lng,
+    latDel: value.latDel,
+    lngDel: value.lngDel
   }
 })
 
 export const loadingTop = (value) => ({
   type: actionTypes.LOADING_TOP,
   payload: value
+})
+
+export const deleteShowImage = () => ({
+  type: actionTypes.DELETE_SHOW_IMAGE,
+  payload: []
 })

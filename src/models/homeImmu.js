@@ -21,7 +21,10 @@ const initialState = Record({
   lat: null,
   lng: null,
   isLoading: true,
-  imgCloseStyle: {opacity:0}
+  imgCloseStyle: {opacity:0},
+  latDel: 1,
+  lngDel: 1
+
 });
 
 export default class homeImmu extends initialState {

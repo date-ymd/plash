@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { 
-  View, 
+import {
+  View,
   LayoutAnimation,
   NativeModules,
   Platform,
@@ -34,12 +34,12 @@ class createPinContainer extends Component {
   }
 
   componentWillMount() { }
-  componentDidMount() { 
+  componentDidMount() {
     this._getLoacationAsync();
   }
   componentWillReceiveProps(nextProps) { }
-  shouldComponentUpdate(nextProps, nextState) { 
-    return true; 
+  shouldComponentUpdate(nextProps, nextState) {
+    return true;
   }
   componentWillUpdate() { }
   componentDidUpdate() { }
@@ -73,12 +73,12 @@ class createPinContainer extends Component {
       <View style={{flex:1}}>
         <CommonHeader />
         {(() => {
-          
+
           if (this.props.pinProps.lat && this.props.pinProps.lng) {
             console.log(this.props.pinProps, 'pin');
             return (
               <View>
-              <FormTitle 
+              <FormTitle
               title='Place'
             />
               <MapView
@@ -106,7 +106,7 @@ class createPinContainer extends Component {
           }
         })()}
 
-        <FormTitle 
+        <FormTitle
           title='Picture'
         />
       </View>

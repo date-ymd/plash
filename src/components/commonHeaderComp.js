@@ -33,7 +33,7 @@ const commonHeader = (props) => {
   // return (
   //   <Container style={{paddingTop: PdTop, paddingBottom:PdBottom}}>
   //     <HeadText style={{fontFamily: platFamily}}>Plash</HeadText>
-  //     <TouchableOpacity 
+  //     <TouchableOpacity
   //       onPress={() => {console.log('object');}}
   //       style={{position:'absolute',right:30,top:PlusTop}}
   //     >

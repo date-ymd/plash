@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { 
-  StyleSheet, 
-  Text, 
-  View, 
-  ScrollView, 
-  Image, 
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  Image,
   TouchableOpacity,
   LayoutAnimation,
   NativeModules,
@@ -28,6 +28,9 @@ import fackes from '../util/facker';
 
 // actions
 import * as actions from '../actions/homeAction';
+
+// mapStyle
+import Retro from '../util/mapRetroStyle.json';
 
 // Component
 import SmallContent from '../components/smallContentComponent';
@@ -59,8 +62,8 @@ class homeContainer extends Component {
     this._getLoacationAsync();
    }
   componentWillReceiveProps(nextProps) { }
-  shouldComponentUpdate(nextProps, nextState) { 
-    return true; 
+  shouldComponentUpdate(nextProps, nextState) {
+    return true;
   }
   componentWillUpdate() { }
   componentDidUpdate() { }
@@ -78,22 +81,38 @@ class homeContainer extends Component {
   // }
 
   _getLoacationAsync = async() => {
-    let { status } = await Permissions.askAsync(Permissions.LOCATION);
-    if (status !== 'granted') {
-      this.setState({
-        locationResult: 'Permission to access location was denied',
-      }); 
+    try {
+
+      let { status } = await Permissions.askAsync(Permissions.LOCATION);
+      if (status !== 'granted') {
+        this.setState({
+          locationResult: 'Permission to access location was denied',
+        });
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+
+      this.props.actions.setMyLocation({
+        lat: location.coords.latitude? location.coords.latitude : 34.6497048,
+        lng: location.coords.longitude? location.coords.longitude : 134.9991259,
+        latDel: 0.0922,
+        lngDel: 0.0421
+      });
+
+    } catch(e) {
+      this.props.actions.setMyLocation({
+        lat: 34.6497048,
+        lng: 134.9991259,
+        latDel: 1,
+        lngDel: 1
+      })
     }
-
-    let location = await Location.getCurrentPositionAsync({});
-
-    this.props.actions.setMyLocation(location);
   }
 
   renderItem(data) {
     let item = data.item;
     return (
-      <View 
+      <View
         style={{backgroundColor: 'white'}}
       >
         <Image source={item} style={{width:null,height:'100%'}} />
@@ -105,16 +124,17 @@ class homeContainer extends Component {
     return (
       fackes.place.map((e,i) => (
         <MapView.Marker
-          key={i} 
+          key={i}
           coordinate={{latitude:e.latitude, longitude:e.longitude}}
           onPress={() => {
+            this.props.actions.deleteShowImage();
             this.props.actions.toggleModal(true, e);
             this.layoutChange('open');
             this.setState({activeSlide:0});
           }}
         >
         {/**
-          <Image source={files.marker.main} style={{width:20,height:35,marginLeft:1}} />
+          <Image source={e.img[0]} style={{width:20,height:35,marginLeft:1}} />
         */}
         </MapView.Marker>
       ))
@@ -154,19 +174,22 @@ class homeContainer extends Component {
             if (this.props.homeProps.showImage.length > 0) {
               return (
                 <View >
-                <Carousel
-                  data={this.props.homeProps.showImage}
-                  renderItem={this.renderItem}
-                  itemWidth={width}
-                  sliderWidth={width}
-                  onSnapToItem={(index) => this.setState({activeSlide: index})}
-                  currentIndex={0}
-                />
-                
+                  <Carousel
+                    data={this.props.homeProps.showImage}
+                    renderItem={this.renderItem}
+                    itemWidth={width}
+                    sliderWidth={width}
+                    onSnapToItem={(index) => this.setState({activeSlide: index})}
+                    currentIndex={0}
+                    onBeforeSnapToItem={(e) => {
+                      console.log('object', 'snap');
+                    }}
+                  />
+
                   <Pagination
                     dotsLength={this.props.homeProps.showImage.length}
                     activeDotIndex={this.state.activeSlide}
-                    containerStyle={{ 
+                    containerStyle={{
                       backgroundColor: 'rgba(0, 0, 0, 0)',
                       position:'absolute',
                       bottom:0
@@ -181,17 +204,19 @@ class homeContainer extends Component {
                     inactiveDotOpacity={0.4}
                     inactiveDotScale={0.6}
                   />
-      
-                <TouchClose
-                  onPress={() => {
-                    this.layoutChange('close');
-                    this.setState({activeSlide:0});
-                  }}
-                >
-                  <Text style={ClosePosition}>×</Text>
-                </TouchClose>
-              </View>
+
+                  <TouchClose
+                    onPress={() => {
+                      this.layoutChange('close');
+                      this.setState({activeSlide:0});
+                    }}
+                  >
+                    <Text style={ClosePosition}>×</Text>
+                  </TouchClose>
+                </View>
               );
+            } else {
+              return (<Loading />);
             }
           })()}
           </View>
@@ -201,17 +226,23 @@ class homeContainer extends Component {
             initialRegion={{
               latitude: this.props.homeProps.lat,
               longitude: this.props.homeProps.lng,
-              latitudeDelta: 0.0922,
-              longitudeDelta: 0.0421
+              latitudeDelta: this.props.homeProps.latDel,
+              longitudeDelta: this.props.homeProps.lngDel
             }}
             showsUserLocation={true}
             followUserLoacation={true}
+            loadingEnabled={true}
+            // mapType={'hybrid'}
+            customMapStyle={require('../util/mapRetroStyle.json')}
+            // liteMode={true}
+            loadingBackgroundColor={'#ffffff'}
+
           >
             {this.markerMapping()}
             {this.polyline()}
           </MapView>
 
-  
+
           <CommonFooter
             // footerStyle={this.props.homeProps.footerStyle}
             // action={this.props.actions.changeLayoutFooter}
@@ -223,7 +254,7 @@ class homeContainer extends Component {
             // actionText={this.props.actions.changeLayoutText}
             btnStyle={this.props.homeProps.mapHeight}
           />
-  
+
         </View>
       );
     }

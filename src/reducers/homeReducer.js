@@ -55,11 +55,17 @@ export default (state = new immutable(), action) => {
     case actionTypes.SET_MY_LOCATION_TOP:
       return state
         .set('lat', action.payload.lat)
-        .set('lng', action.payload.lng);
+        .set('lng', action.payload.lng)
+        .set('latDel', action.payload.latDel)
+        .set('lngDel', action.payload.lngDel);
 
     case actionTypes.LOADING_TOP:
       return state
         .set('isLoading', action.payload);
+
+    case actionTypes.DELETE_SHOW_IMAGE:
+      return state
+        .set('showImage', action.payload);
 
     default:
       return state;
