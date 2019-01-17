@@ -3,7 +3,7 @@ import {reactotronRedux} from "reactotron-redux";
 
 export default Reactotron
     .configure({name: "match"}) // Reactotronに表示するアプリ名
-    .configure({ host: "172.16.18.14" }) // ローカルIPアドレスの登録
+    .configure({ host: "172.16.18.199" }) // ローカルIPアドレスの登録
     .use(reactotronRedux()) // Reduxと統合することを宣言
     .connect(); // おまじない的な
 

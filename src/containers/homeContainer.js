@@ -54,6 +54,7 @@ class homeContainer extends Component {
     this.state = {
       isImageView: false,
       activeSlide: 0,
+      isImgLoad: false,
     }
   }
 
@@ -130,7 +131,7 @@ class homeContainer extends Component {
             this.props.actions.deleteShowImage();
             this.props.actions.toggleModal(true, e);
             this.layoutChange('open');
-            this.setState({activeSlide:0});
+            this.setState({activeSlide:0, isImgLoad:true});
           }}
         >
         {/**
@@ -208,15 +209,17 @@ class homeContainer extends Component {
                   <TouchClose
                     onPress={() => {
                       this.layoutChange('close');
-                      this.setState({activeSlide:0});
+                      this.setState({activeSlide:0, isImgLoad:false});
                     }}
                   >
                     <Text style={ClosePosition}>×</Text>
                   </TouchClose>
                 </View>
               );
-            } else {
+            } else if (this.state.isImgLoad) {
               return (<Loading />);
+            } else {
+              return (<View />);
             }
           })()}
           </View>

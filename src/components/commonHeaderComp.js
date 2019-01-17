@@ -45,7 +45,7 @@ const commonHeader = (props) => {
     <View style={{backgroundColor:'#e0f0f0'}}>
       <SafeAreaView forceInset={{top:'always'}} style={{height:HeaderTop}}>
         <Container style={{paddingTop:10}}>
-          <HeadText style={{fontFamily: platFamily}}>Plash</HeadText>
+          <HeadText style={{fontFamily: platFamily}}>{props.text?props.text:'Plash'}</HeadText>
         </Container>
       </SafeAreaView>
     </View>
