@@ -14,6 +14,7 @@ import { createStore, runsaga } from './store/createStore';
 // container
 import HomeContainer from './containers/homeContainer';
 import CreatePinContainer from './containers/createPinContainer';
+import CreatePhotoContainer from './containers/createPhotoContainer';
 
 const store = createStore();
 runsaga();
@@ -38,6 +39,11 @@ export default class App extends React.Component {
                 key="createPin"
                 // title="adsf"
                 component={CreatePinContainer}
+                // initial={true}
+              />
+              <Scene
+                key="createPhoto"
+                component={CreatePhotoContainer}
                 initial={true}
               />
             </Scene>

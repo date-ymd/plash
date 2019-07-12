@@ -1,13 +1,11 @@
-import immutable from '../models/createPinImmu';
+import immutable from '../models/createPhotoImmu';
 import * as actionTypes from '../util/actionType';
 
 export default (state = new immutable(), action) => {
   switch (action.type) {
-    case actionTypes.SET_MY_LOCATION:
+    case actionTypes.GET_CAMERAROLL:
       return state
-      .set('lat', action.payload.lat)
-      .set('lng', action.payload.lng)
-      ;
+        .set('images', action.payload.images);
 
     default:
       return state;

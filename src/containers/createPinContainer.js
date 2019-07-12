@@ -4,7 +4,7 @@ import {
   LayoutAnimation,
   NativeModules,
   Platform,
-  TouchableHighlight,
+  TouchableOpacity,
   Image
  } from 'react-native';
 import { connect } from 'react-redux';
@@ -13,6 +13,9 @@ import { Actions } from 'react-native-router-flux';
 import PropTypes from 'prop-types';
 import { MapView, Location, Permissions } from 'expo';
 import faker from 'faker';
+
+// icons
+import { Ionicons } from '@expo/vector-icons';
 
 // facke
 import fackes from '../util/facker';
@@ -25,7 +28,7 @@ import * as actions from '../actions/createPinAction';
 
 // Component
 import CommonHeader from '../components/commonHeaderComp';
-import FormTitle from '../components/formTitleComp';
+import FooterBtn from '../components/footerBtnComp';
 
 // styles
 import * as Styles from '../assets/styles';
@@ -65,8 +68,6 @@ class createPinContainer extends Component {
 
     let location = await Location.getCurrentPositionAsync({});
 
-    // console.log(JSON.stringify(location).longitude);
-    // this.setState({ locationResult: JSON.stringify(location) });
     this.props.actions.setMyLocation(location.coords);
   }
 
@@ -76,56 +77,31 @@ class createPinContainer extends Component {
     return (
       <View style={{flex:1}}>
         <CommonHeader
-          text="check"
+          text="Location"
           style={{flex:1}}
         />
         {(() => {
-console.log(this.state);
           if (this.props.pinProps.lat && this.props.pinProps.lng) {
             console.log(this.props.pinProps, 'pin');
             return (
               <View style={{flex:1}}>
                 <View
                 style={{
-                  // width:50,
-                  // flex: 1,
-                  // alignSelf: 'stretch',
-                  // width: undefined,
-                  // height: undefined
-                  // width:30,
-                  // height:80,
-                  // flex:1,
-                  flexDirection:'row',
-                  alignItems:'center',
-                  justifyContent:'center',
-                  // bottom: 5
-                  // position:'absolute',
-                  // top:'46%',
-                  // left:'50%',
-                  // right:0,
-                  // bottom:0
-                  // zIndex:2
+                  alignSelf: 'center',
+                  position:'absolute',
+                  top:'44%',
+                  zIndex:2
                 }}
                 >
                   <Image source={file.marker.main}
                     style={{
-                      // flex: 1,
-                      // alignSelf: 'stretch',
-                      // width: undefined,
-                      // height: undefined
                       width:20,
                       height:32,
-                      // flex:1,
-                      // flexDirection:'row',
-                      // alignItems:'center',
-                      // justifyContent:'center',
-                      // resizeMode: 'cover'
                     }}
                   />
                 </View>
                 <MapView
                   initialRegion={{
-                    // this.state
                     latitude: this.props.pinProps.lat,
                     longitude: this.props.pinProps.lng,
                     latitudeDelta: 0.005057962974127861,
@@ -133,29 +109,28 @@ console.log(this.state);
                   }}
                   style={{height:'100%'}}
                   showsUserLocation={true}
-                  // followUserLoacation={true}
-                  // scrollEnabled={false}
-                  // zoomEnabled={false}
                   onRegionChange={((maps) => {
-                    // console.log(maps,'maps');
-                    // this.setState('region', maps);
                     this.props.actions.setMyLocation(maps);
                   })}
                 >
                 {/**
+                  <MapView.Marker
+                  coordinate={{
+                    latitude: this.props.pinProps.lat,
+                    longitude: this.props.pinProps.lng
+                  }}
+                  />
                 */}
-                <MapView.Marker
-                coordinate={{
-                  latitude: this.props.pinProps.lat,
-                  longitude: this.props.pinProps.lng
-                }}
-                />
 
                 </MapView>
               </View>
             )
           }
         })()}
+        <FooterBtn
+          action={Actions.createPhoto}
+          isNext={true}
+        />
       </View>
     );
   }
